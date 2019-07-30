@@ -50,7 +50,20 @@ type MathFunction = (x: number, y: number) => number;
 
 const subtractFunction: MathFunction = (x: number, y: number) => x + y;
 
+// Non variable function
+
+function divide(x: number, y: number): number {
+    return x / y;
+}
+
+// Non Arrow function
+const multiply = function(x: number, y: number): number {
+    return x * y;
+};
+
 console.log(str, num, trueVar, arr, myTypeArr);
 
 addFunction(10, 20);
 subtractFunction(10, 4);
+divide(10, 4);
+multiply(10, 4);
