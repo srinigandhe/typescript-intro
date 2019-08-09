@@ -1,38 +1,32 @@
-const today = {
-    date: new Date(),
-    weather: 'Sunny'
+abstract class Person {
+    name: string;
+
+    protected constructor(name: string) {
+        this.name = name;
+    }
+
+    displayName(): void {
+        console.log(`Name is ${this.name}`);
+    }
+
+    abstract find(): Person;
 }
 
-const logWeather = (forecast: { date: Date, weather: string }): string => {
-    return `On ${forecast.date} the weather is/was ${forecast.weather}`
-};
+class Employee extends Person {
 
-const destructuredLogWeather = ({date, weather}: { date: Date, weather: string }): void => {
-    console.log(`${date} :: ${weather}`)
-};
-
-
-console.log(logWeather(today));
-console.log(destructuredLogWeather(today));
-
-const profile = {
-    myName: 'Alex',
-    age: 20,
-    coords: {
-        lat: 0,
-        lng: 15
-    },
-    setAge(age: number): void {
-        this.age = age;
+    constructor(name: string, public empCode: number) {
+        super(name);
     }
-};
 
-profile.setAge(30);
-const {age, myName}: { age: number, myName: string } = profile;
+    getEmpCode(): void {
+        console.log(`this.empCode ${this.empCode}`);
+    }
 
-console.log(age, myName);
+    find(): Person {
+        return new Employee('Srini', 1);
+    }
+}
 
+const employee: Employee = new Employee('Snehal', 2);
 
-const {coords: {lat, lng}}: { coords: { lat: number, lng: number } } = profile;
-console.log(lat, lng);
-
+console.log(employee.find());
